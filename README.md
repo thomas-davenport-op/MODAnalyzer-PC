@@ -1,7 +1,7 @@
 # Installation Instructions for HEPVM
-
+```
 git clone http://github.com/thomas-davenport-op/MODAnalyzer-PC
-
+```
 
 # OLD README FOLLOWS
 # MIT Open Data Analyzer
