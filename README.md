@@ -1,5 +1,6 @@
 # Installation Instructions for HEPVM
 ```
+sudo apt-get install libboost-all-dev
 git clone http://github.com/thomas-davenport-op/MODAnalyzer-PC
 ```
 
