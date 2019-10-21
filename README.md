@@ -1,8 +1,3 @@
-# Installation Instructions for HEPVM
-```
-sudo apt-get install libboost-all-dev
-git clone http://github.com/thomas-davenport-op/MODAnalyzer-PC
-```
 
 # OLD README FOLLOWS
 # MIT Open Data Analyzer
