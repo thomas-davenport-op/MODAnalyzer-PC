@@ -18,6 +18,7 @@ If asked to confirm something, enter 'y'
     sudo yum clean all
     sudo yum update sl-release
     sudo yum update
+    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo yum erase numpy nose
     sudo yum install tkinter
     sudo yum install python2-root
