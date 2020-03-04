@@ -9,7 +9,9 @@ Open the CMS SHELL (on the left on the desktop) and run:
     
 Close the CMS Shell
 
-Open the Terminal Emulator (Rightmost icon on the menu bar at the bottom) and run the following command. If asked for a password it is 'password'. Some of the commands take several minutes to run. Let them go until the finish before starting the next one.
+Open the Terminal Emulator (Rightmost icon on the menu bar at the bottom) and run the following command. If asked for a password it is 'password'. 
+Some of the commands take several minutes to run. Let them go until the finish before starting the next one.
+If asked to confirm something, enter 'y'
 
     sudo yum erase cernvm-system
     sudo sh -c 'echo 7.7 > /etc/yum/vars/slreleasever'
