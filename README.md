@@ -1,3 +1,33 @@
+# Initial Setup
+Create a new virtual machine using CMS-OpenData-1.1.2.ova file.
+
+Start the virtual machine.
+
+Open the CMS SHELL (on the left on the desktop) and run:
+
+    cmsrel CMSSW_4_2_8
+    
+Close the CMS Shell
+
+Open the Terminal Emulator (Rightmost icon on the menu bar at the bottom) and run the following command. If asked for a password it is 'password'. Some of the commands take several minutes to run. Let them go until the finish before starting the next one.
+
+    sudo yum erase cernvm-system
+    sudo sh -c 'echo 7.7 > /etc/yum/vars/slreleasever'
+    sudo yum clean all
+    sudo yum update sl-release
+    sudo yum update
+    sudo yum erase numpy nose
+    sudo yum install tkinter
+    sudo yum install python2-root
+    sudo yum install root-tmva
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py --user
+    python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+    python -m pip install --user rootpy
+    python -m pip install --user root_numpy
+    
+    git clone https://github.com/thomas-davenport-op/MODAnalyzer-PC
+
 
 # OLD README FOLLOWS
 # MIT Open Data Analyzer
