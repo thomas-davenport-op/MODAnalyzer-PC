@@ -63,7 +63,7 @@ from scipy.stats import binned_statistic
 import rootpy.plotting.views
 
 
-logo_location = "/home/aashish/root/macros/MODAnalyzer/mod_logo.png"
+logo_location = "/home/cms-opendata/MODAnalyzer-PC/mod_logo.png"
 logo_text = "Prelim. (20\%)"
 
 
@@ -253,9 +253,11 @@ class MODPlot:
 
 				# Ratio plot.
 
-				plt.sca(ax1)
+				#plt.sca(ax1)
 
 				if self._ratio_plot:
+
+					plt.sca(ax1)
 
 					denominator_hist = self._hists[k][self._ratio_to_index].hist()
 

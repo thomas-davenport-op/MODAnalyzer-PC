@@ -124,9 +124,9 @@ labels = [ plot_labels['data'], plot_labels['pythia'], plot_labels['herwig'], pl
 start = time.time()
 
 data_hists = parse_file(input_analysis_file, eta_cut=10.)
-pythia_hists = parse_file("/home/aashish/pythia_truth.dat", eta_cut=10.)
-herwig_hists = parse_file("/home/aashish/herwig_truth.dat", eta_cut=10.)
-sherpa_hists = parse_file("/home/aashish/sherpa_truth.dat", eta_cut=10.)
+#pythia_hists = parse_file("/home/aashish/pythia_truth.dat", eta_cut=10.)
+#herwig_hists = parse_file("/home/aashish/herwig_truth.dat", eta_cut=10.)
+#sherpa_hists = parse_file("/home/aashish/sherpa_truth.dat", eta_cut=10.)
 
 end = time.time()
 
@@ -140,8 +140,10 @@ def get_hist_list(var):
 	hists = []
 
 	for i in range(len(data_hists[var])):
-		data_pythia_herwig_sherpa_hists = [ data_hists[var][i], pythia_hists[var][i], herwig_hists[var][i], sherpa_hists[var][i] ]
-		hists.append( data_pythia_herwig_sherpa_hists )
+#		data_pythia_herwig_sherpa_hists = [ data_hists[var][i], pythia_hists[var][i], herwig_hists[var][i], sherpa_hists[var][i] ]
+#		hists.append( data_pythia_herwig_sherpa_hists )
+		data_only_hists = [ data_hists[var][i], data_hists[var][i], data_hists[var][i], data_hists[var][i] ]
+		hists.append( data_only_hists )
 
 	return hists
 
@@ -156,16 +158,16 @@ start = time.time()
 
 print "Plotting pT!"
 
-pT_plot = MODPlot( get_hist_list('hardest_pT'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, y_scale='log', ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $p_T$", y_label="A.U.")
+pT_plot = MODPlot( get_hist_list('hardest_pT'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, y_scale='log', ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $p_T$", y_label="A.U.")
 pT_plot.plot("hardest_pT.pdf")
 
 
 
+#'''
 
-'''
 print "Plotting eta!"
 
-eta_plot = MODPlot( get_hist_list('hardest_eta'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\eta$", y_label="A.U.", x_lims=(-5., 5.))
+eta_plot = MODPlot( get_hist_list('hardest_eta'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\eta$", y_label="A.U.", x_lims=(-5., 5.))
 eta_plot.plot("hardest_eta.pdf")
 
 
@@ -173,13 +175,13 @@ eta_plot.plot("hardest_eta.pdf")
 
 print "Plotting phi!"
 
-phi_plot = MODPlot( get_hist_list('hardest_phi'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\phi$", y_label="A.U.", x_lims=(0, 2*np.pi))
+phi_plot = MODPlot( get_hist_list('hardest_phi'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\phi$", y_label="A.U.", x_lims=(0, 2*np.pi))
 phi_plot.plot("hardest_phi.pdf")
 
 
 print "Plotting constituent multiplicity!"
 
-constituent_multiplicity_plot = MODPlot( get_hist_list('mul_pre_SD'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Constituent Multiplicity", y_label="A.U.")
+constituent_multiplicity_plot = MODPlot( get_hist_list('mul_pre_SD'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Constituent Multiplicity", y_label="A.U.")
 constituent_multiplicity_plot.plot("constituent_multiplicity.pdf")
 
 
@@ -189,7 +191,7 @@ constituent_multiplicity_plot = MODPlot( get_hist_list('zg_10'), plot_types=plot
 constituent_multiplicity_plot.plot("zg.pdf")
 
 
-'''
+#'''
 
 
 end = time.time()
