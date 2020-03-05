@@ -6,9 +6,6 @@ import hists
 
 from MODPlot import *
 
-import logging
-mpl_logger = logging.getLogger('matplotlib')
-mpl_logger.setLevel(logging.WARNING)
 
 input_analysis_file = sys.argv[1]
 
@@ -47,8 +44,8 @@ def parse_file(input_file, pT_lower_cut=150., pT_upper_cut=20000., softdrop_pT_l
 
 		for line in infile:
 
-			#if line_number > 50:
-			if False:
+			if line_number > 10000:
+			# if False:
 				break
 
 			line_number += 1
@@ -66,9 +63,6 @@ def parse_file(input_file, pT_lower_cut=150., pT_upper_cut=20000., softdrop_pT_l
 					softdrop_pT_index = keywords.index("pT_after_SD") + 1
 					eta_index = keywords.index("hardest_eta") + 1
 					prescale_index = keywords.index("prescale") + 1
-					phi_index = keywords.index("hardest_phi") + 1
-					mul_index = keywords.index("mul_pre_SD") + 1
-					zg_index = keywords.index("zg_10") + 1
 
 					# if abs(float(numbers[eta_index])) < eta_cut and float(numbers[pT_index]) > pT_lower_cut and float(numbers[pT_index]) < pT_upper_cut and float(numbers[softdrop_pT_index]) > softdrop_pT_lower_cut and float(numbers[softdrop_pT_index]) < softdrop_pT_upper_cut:
 					
@@ -80,10 +74,7 @@ def parse_file(input_file, pT_lower_cut=150., pT_upper_cut=20000., softdrop_pT_l
 							# Loop through each individual hist in all_hists[key] and fill it only if the current line satisfies all the accompanying conditions.
 
 							for mod_hist in all_hists[keyword]:
-								if line_number == 10:
-                                                                        print mod_hist
-                                                                        print keyword
-                                                                        print len(keywords)
+								
 								hist = mod_hist.hist()
 								conditions = mod_hist.conditions()
 
@@ -91,11 +82,6 @@ def parse_file(input_file, pT_lower_cut=150., pT_upper_cut=20000., softdrop_pT_l
 								for condition_keyword, condition_function in conditions:
 									keyword_index = keywords.index(condition_keyword) + 1
 									condition_satisfied *= int( condition_function(float(numbers[keyword_index])) )
-                                                                        #if line_number % 10000 == 0:
-                                                                        #print line_number
-                                                                        #print condition_keyword
-                                                                        #print condition_satisfied
-                                                                        
 
 								condition_satisfied = bool(condition_satisfied)
 								
@@ -124,7 +110,6 @@ def parse_file(input_file, pT_lower_cut=150., pT_upper_cut=20000., softdrop_pT_l
 				pass
 
 
-                print "Lines {}".format(line_number)                
 	return all_hists
 
 
@@ -173,17 +158,16 @@ start = time.time()
 
 print "Plotting pT!"
 
-pT_plot = MODPlot( get_hist_list('hardest_pT'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, y_scale='log', ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $p_T$", y_label="A.U.")
+pT_plot = MODPlot( get_hist_list('hardest_pT'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, y_scale='log', ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $p_T$", y_label="A.U.")
 pT_plot.plot("hardest_pT.pdf")
 
 
 
-'''
+#'''
 
 print "Plotting eta!"
 
-#eta_plot = MODPlot( get_hist_list('hardest_eta'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\eta$", y_label="A.U.", x_lims=(-5., 5.))
-eta_plot = MODPlot( get_hist_list('hardest_eta'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\eta$", y_label="A.U.")
+eta_plot = MODPlot( get_hist_list('hardest_eta'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, multi_page=True, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\eta$", y_label="A.U.", x_lims=(-5., 5.))
 eta_plot.plot("hardest_eta.pdf")
 
 
@@ -191,25 +175,23 @@ eta_plot.plot("hardest_eta.pdf")
 
 print "Plotting phi!"
 
-#phi_plot = MODPlot( get_hist_list('hardest_phi'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\phi$", y_label="A.U.", x_lims=(0, 2*np.pi))
-phi_plot = MODPlot( get_hist_list('hardest_phi'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\phi$", y_label="A.U.")
+phi_plot = MODPlot( get_hist_list('hardest_phi'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Jet $\phi$", y_label="A.U.", x_lims=(0, 2*np.pi))
 phi_plot.plot("hardest_phi.pdf")
 
 
 print "Plotting constituent multiplicity!"
 
-constituent_multiplicity_plot = MODPlot( get_hist_list('mul_pre_SD'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=False, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Constituent Multiplicity", y_label="A.U.")
+constituent_multiplicity_plot = MODPlot( get_hist_list('mul_pre_SD'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="Constituent Multiplicity", y_label="A.U.")
 constituent_multiplicity_plot.plot("constituent_multiplicity.pdf")
 
 
 print "Plotting zg!"
 
-#constituent_multiplicity_plot = MODPlot( get_hist_list('zg_10'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="$z_g$", y_label="A.U.", x_lims=(0, 0.6))
-constituent_multiplicity_plot = MODPlot( get_hist_list('zg_10'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="$z_g$", y_label="A.U.")
+constituent_multiplicity_plot = MODPlot( get_hist_list('zg_10'), plot_types=plot_types, plot_colors=colors, plot_labels=labels, ratio_plot=True, ratio_to_index=1, ratio_label="Ratio\nto\nPythia", x_label="$z_g$", y_label="A.U.", x_lims=(0, 0.6))
 constituent_multiplicity_plot.plot("zg.pdf")
 
 
-'''
+#'''
 
 
 end = time.time()

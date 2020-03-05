@@ -28,6 +28,7 @@ from matplotlib.legend_handler import HandlerLine2D
 from mpl_toolkits.mplot3d import axes3d
 from matplotlib import cm
 
+
 # RootPy
 from rootpy.plotting import Hist, HistStack, Legend
 import rootpy.plotting.root2matplotlib as rplt
@@ -255,8 +256,6 @@ class MODPlot:
 				plt.sca(ax1)
 
 				if self._ratio_plot:
-
-					# plt.sca(ax1)
 
 					denominator_hist = self._hists[k][self._ratio_to_index].hist()
 
