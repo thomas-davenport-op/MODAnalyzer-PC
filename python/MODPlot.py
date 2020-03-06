@@ -252,11 +252,11 @@ class MODPlot:
 
 				# Ratio plot.
 
-				plt.sca(ax1)
+				#plt.sca(ax1)
 
 				if self._ratio_plot:
 
-					# plt.sca(ax1)
+					plt.sca(ax1)
 
 					denominator_hist = self._hists[k][self._ratio_to_index].hist()
 
@@ -294,10 +294,17 @@ class MODPlot:
 								x_errors.append((x_segment[1][0] - x_segment[0][0]) / 2.)
 							for y_segment in all_plots[i][2][1].get_segments():
 								y_errors.append((y_segment[1][1] - y_segment[0][1]) / 2.)
-
+                                                        
+                                                        #print "x_errors"
+                                                        #print x_errors
+                                                        #print "y_errors"
+                                                        #print y_errors
 							ratio_y_err = [ b / m if m != 0 else None for b, m in zip(y_errors, points_y_s[self._ratio_to_index]) ]
 							
 							# rplt.errorbar(ratio_hist, ax=ax1, zorder=z_indices[i], emptybins=False, xerr=1, yerr=ratio_y_err, ls='None', marker='o', markersize=10, pickradius=8, capthick=5, capsize=8, elinewidth=5, alpha=1.0)
+                                                        #print "ratio_y_err"
+                                                        #print ratio_y_err
+
 							rplt.errorbar(ratio_hist, zorder=z_indices[i], emptybins=False, xerr=1, yerr=ratio_y_err, ls='None', marker='o', markersize=10, pickradius=8, capthick=5, capsize=8, elinewidth=5, alpha=1.0)
 
 

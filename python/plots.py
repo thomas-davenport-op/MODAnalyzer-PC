@@ -101,7 +101,7 @@ def parse_file(input_file, pT_lower_cut=150., pT_upper_cut=20000., softdrop_pT_l
 								
 								if condition_satisfied:
 									if mod_hist.use_prescale():
-										hist.fill_array( [float(numbers[i + 1])], [float(numbers[prescale_index])] )	 # + 1 because we ignore the first keyword "Entry".
+										hist.fill_array( [float(numbers[i + 1])], [float(numbers[prescale_index]) + 1] )	 # + 1 because we ignore the first keyword "Entry".
 									else:
 										hist.fill_array( [float(numbers[i + 1])] )	 # + 1 because we ignore the first keyword "Entry".
 								
@@ -178,7 +178,7 @@ pT_plot.plot("hardest_pT.pdf")
 
 
 
-'''
+
 
 print "Plotting eta!"
 
@@ -209,7 +209,7 @@ constituent_multiplicity_plot = MODPlot( get_hist_list('zg_10'), plot_types=plot
 constituent_multiplicity_plot.plot("zg.pdf")
 
 
-'''
+
 
 
 end = time.time()
