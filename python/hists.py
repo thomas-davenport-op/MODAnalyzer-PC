@@ -75,11 +75,11 @@ def all_hist_templates():
 
 	#all_hists['hardest_pT'].append( copy.deepcopy( MODHist(copy.deepcopy(hardest_pT_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=True, x_lims=(85,10000)) ) )
 
-	all_hists['hardest_pT'].append( MODHist(copy.deepcopy(hardest_pT_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=False) )
-	all_hists['hardest_eta'].append( MODHist(copy.deepcopy(hardest_eta_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=False) )
-	all_hists['hardest_phi'].append( MODHist(copy.deepcopy(hardest_phi_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=False) )
-	all_hists['mul_pre_SD'].append( MODHist(copy.deepcopy(mul_pre_SD_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=False) )
-	all_hists['zg_10'].append( MODHist(copy.deepcopy(zg_10_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=False) )
+	all_hists['hardest_pT'].append( MODHist(copy.deepcopy(hardest_pT_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=True) )
+	all_hists['hardest_eta'].append( MODHist(copy.deepcopy(hardest_eta_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=True) )
+	all_hists['hardest_phi'].append( MODHist(copy.deepcopy(hardest_phi_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=True) )
+	all_hists['mul_pre_SD'].append( MODHist(copy.deepcopy(mul_pre_SD_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=True) )
+	all_hists['zg_10'].append( MODHist(copy.deepcopy(zg_10_hist), conditions=[('hardest_pT', lambda x: x > 85)], use_prescale=True) )
 	
 	# all_hists['hardest_pT'].append( MODHist(copy.deepcopy(hardest_pT_hist), conditions=[('hardest_pT', lambda x: x > 150)], use_prescale=True) )
 	#all_hists['hardest_eta'].append( MODHist(copy.deepcopy(hardest_eta_hist), conditions=[('hardest_eta', lambda x: x > 150)], use_prescale=True) )

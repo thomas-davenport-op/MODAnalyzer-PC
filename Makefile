@@ -1,4 +1,4 @@
-PATH_TO_FASTJET = /usr/local/bin/fastjet-config
+PATH_TO_FASTJET = /home/cms-opendata/fastjet-install/bin/fastjet-config
 PATH_TO_BOOST = /usr/lib/
 
 CXX = g++
