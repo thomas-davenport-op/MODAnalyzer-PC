@@ -28,9 +28,48 @@ If asked to confirm something, enter 'y'
     python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
     python -m pip install --user rootpy
     python -m pip install --user root_numpy
+      
+    curl -O http://home.thep.lu.se/~torbjorn/pythia8/pythia8244.tgz
+    tar xvfz pythia8244.tgz
+    cd pythia8244.tgz
+    make
+    cd ..
+
+    curl -O http://fastjet.fr/repo/fastjet-3.3.3.tar.gz
+    tar zxvf fastjet-3.3.3.tar.gz
+    cd fastjet-3.3.3/
+    ./configure --prefix=$PWD/../fastjet-install
+    make
+    make check
+    make install
+    cd ..
     
+    curl -O https://fastjet.hepforge.org/contrib/downloads/fjcontrib-1.042.tar.gz
+    tar -xvzf fjcontrib-1.042.tar.gz
+    cd fjcontrib-1.042
+    ./configure --fastjet-config=/home/cms-opendata/fastjet-install/bin/fastjet-config --prefix=/home/cms-opendata/fastjet-install
+    make
+    sudo make install
+
+    git clone https://github.com/thomas-davenport-op/MODMonteCarlo-PC
     git clone https://github.com/thomas-davenport-op/MODAnalyzer-PC
 
+Test the MOD software:
+
+    cd MODMonteCarlo-PC
+    python ./utilities/run_large_weighted_mc.py ./data 100
+ 
+This should generate a .mod data file in the .data/pythia directory with 100 events.
+
+    cd ../MODAnalyzer-PC
+    mkdir plots
+    cd plots
+    python ../python/plots.py ../sampledata/analyzed_0000_b.dat
+
+This could create several pdf files of plots (without prescales for now).
+You can view them using (for example):
+
+    xdg-open hardest_pT.pdf
 
 # OLD README FOLLOWS
 # MIT Open Data Analyzer
