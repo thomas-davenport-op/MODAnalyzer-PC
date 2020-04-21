@@ -70,6 +70,25 @@ This could create several pdf files of plots (without prescales for now).
 You can view them using (for example):
 
     xdg-open hardest_pT.pdf
+    
+# Generating Pythia Events
+
+We want to simulate a large number of events (about 250000) which will be produces in separate 500MB files, each with 20000 events.
+
+Make a directory to store the MOD files and then to analyze them later:
+
+    cd ~
+    mkdir MCdata
+
+Now run the MC generation to store 250000 events in the directory we just created
+
+    cd ~/MODMonteCarlo-PC
+    python ./utilities/run_large_weighted_mc.py ~/MCdata/MOD 250000
+    
+Now we want to run the analyzer, telling it where the files we want analyzed are and where we want the output
+
+    cd ~/MODAnalyzer-PC
+    python ./utilities/analyze.py ~/MCdata/MOD ~/MCdata/pythia.dat
 
 # OLD README FOLLOWS
 # MIT Open Data Analyzer
